@@ -23,35 +23,47 @@ ctx.stroke();
 window.onkeypress=function(e){
     switch(e.key){
         case 'Enter':
-            if(spd<unit.length-1){
-                spd++;
-                printspd();
-            }
+            speedup();
             break;
         case 'Backspace':
-            if(spd>0){
-                spd--;
-                printspd();
-            }
+            speeddown();
             break;
         case ' ':
             e.preventDefault();
             pause=!pause;
     }
 }
-document.getElementById('can').onclick=function(e){
-    if(e.clientX<rad+mergin){
-        if(spd>0){
-            spd--;
-            printspd();
+if('ontouchend' in document){
+    document.getElementById('can').ontouchstart=function(e){
+        if(e.changedTouches[0].pageX<rad+mergin){
+            speeddown();
+        }else if(e.changedTouches[0].pageX>rad*3+mergin*3){
+            speedup();
+        }else{
+            pause=!pause;
         }
-    }else if(e.clientX>rad*3+mergin*3){
-        if(spd<unit.length-1){
-            spd++;
-            printspd();
+    }
+}else{
+    document.getElementById('can').onclick=function(e){
+        if(e.pageX<rad+mergin){
+            speeddown();
+        }else if(e.pageX>rad*3+mergin*3){
+            speedup();
+        }else{
+            pause=!pause;
         }
-    }else{
-        pause=!pause;
+    }
+}
+function speedup(){
+    if(spd<unit.length-1){
+        spd++;
+        printspd();
+    }
+}
+function speeddown(){
+    if(spd>0){
+        spd--;
+        printspd();
     }
 }
 
