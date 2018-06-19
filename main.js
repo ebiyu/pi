@@ -25,11 +25,13 @@ window.onkeypress=function(e){
         case 'Enter':
             if(spd<unit.length-1){
                 spd++;
+                printspd();
             }
             break;
         case 'Backspace':
             if(spd>0){
                 spd--;
+                printspd();
             }
             break;
         case ' ':
@@ -41,10 +43,12 @@ document.getElementById('can').onclick=function(e){
     if(e.clientX<rad+mergin){
         if(spd>0){
             spd--;
+            printspd();
         }
     }else if(e.clientX>rad*3+mergin*3){
         if(spd<unit.length-1){
             spd++;
+            printspd();
         }
     }else{
         pause=!pause;
@@ -61,6 +65,8 @@ var timeout=[1000,500,300,200,100,50,10,0,0,0,0,0,0,0];
 var unit=[1,1,1,1,1,1,1,5,10,50,100,500,1000,9638];
 
 printtxt()
+printspd()
+
 var pause=true;
 loop();
 
@@ -100,11 +106,16 @@ function plot(x,y,inc){
     ctx.lineTo(x*rad+rad+mergin*3, -y*rad+rad+mergin); 
     ctx.stroke();
 }
-function printtxt(){
+function printspd(){
     ctx.strokeStyle='#000';
-    ctx.clearRect(rad*2+mergin*4,0,rad*4+mergin*4,rad*2);
+    ctx.clearRect(rad*3.8,0,rad,rad/6);
     ctx.font=String(rad/10)+'px  "ヒラギノ丸ゴ ProN", "Hiragino Maru Gothic ProN","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO"';
     ctx.fillText('スピード:'+(spd+1)+'/'+unit.length,rad*3.8,rad/8);
+
+}
+function printtxt(){
+    ctx.strokeStyle='#000';
+    ctx.clearRect(rad*2+mergin*4,rad/6,rad*4+mergin*4,rad*2);
     ctx.font=String(rad/4)+'px  "ヒラギノ丸ゴ ProN", "Hiragino Maru Gothic ProN","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO"';
     ctx.fillText('投げた数:'+cnt,rad*2+mergin*4,rad/2);
     ctx.fillText('入った数:'+incircle,rad*2+mergin*4,rad);
