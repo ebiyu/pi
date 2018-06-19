@@ -37,6 +37,19 @@ window.onkeypress=function(e){
             pause=!pause;
     }
 }
+document.getElementById('can').onclick=function(e){
+    if(e.clientX<rad+mergin){
+        if(spd>0){
+            spd--;
+        }
+    }else if(e.clientX>rad*3+mergin*3){
+        if(spd<unit.length-1){
+            spd++;
+        }
+    }else{
+        pause=!pause;
+    }
+}
 
 var cnt=0;
 var incircle=0;
