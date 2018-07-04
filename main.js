@@ -134,5 +134,5 @@ function printtxt(){
     ctx.fillText('外れた数:'+(cnt-incircle),rad*2+mergin*4,rad*1.5);
     ctx.clearRect(0,rad*2+mergin*2,rad*10,rad);
     ctx.font=String(rad*0.6)+'px  "ヒラギノ丸ゴ ProN", "Hiragino Maru Gothic ProN","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO"';
-    ctx.fillText('π='+pi.toFixed(7),0,rad*2.7);
+    ctx.fillText('π≒'+pi.toFixed(7),0,rad*2.7);
 }
